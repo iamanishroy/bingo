@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bingo | Wait</title>
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/paper.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/wait.js"></script>
+    <script src="https://kit.fontawesome.com/9f37ddf547.js"></script>
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+    <script src="js/chat.js"></script>
+</head>
+
+<body onload="room()">
+    <center>
+        <article class="article">
+            <h1 class="article-title" onclick="localStorage.clear(); window.location.replace('index.html')">Bingo</h1>
+            <p class="text-lead">Your Room Code</p>
+            <p id="room_code"></p>
+            <div class="res-btn">
+                <div class="col-12 col">
+                    <button class="btn-block" onclick="copyToClipboard()">Copy Code</button>
+                    <a id="share"><button class="btn-block">Share Code</button></a>
+                </div>
+                <button style="display: none;" id="start" onclick="start()">Start</button>
+            </div>
+            <p class="text-lead">Users Waiting</p>
+            <div class="row flex-spaces"></div>
+        </article>
+    </center>
+    <input class="modal-state" id="modal-2" type="checkbox">
+    <div class="modal">
+        <label class="modal-bg" for="modal-2"></label>
+        <div class="modal-body chatBox">
+            <label class="btn-close" for="modal-2">X</label>
+            <h4 class="modal-title">Chats</h4>
+            <div class="chats"></div>
+            <div class="form-group send-msg">
+                <input type="text" placeholder="Enter Messege" id="paperInputs1">
+                <button onclick="send()"><i class="far fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+*{
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+.intro {
+	margin-top: 30%;
+}
+
+h1,
+p,
+h3,
+article .text-lead {
+	margin: 0;
+}
+
+.flex-spaces {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+#bingotable {
+	margin: 0 auto;
+	text-align: center;
+	width: 90vw;
+	border-collapse: collapse;
+}
+
+td {
+	margin: 0 auto;
+	font-size: 3rem;
+	text-align: center;
+	width: 20%;
+	height: calc(20/100 * 90vw);
+}
+
+table tbody tr td {
+	border-top: 2px dashed #000;
+	line-height: 0.5;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	vertical-align: top;
+}
+.card .card-body {
+	padding-top: 0.5rem;
+	padding-bottom: 0;
+}
+.send-msg{
+	margin-top: 10px;
+}
+.send-msg input{
+	width: 75%; 
+	display: inline; 
+	padding: 0.8rem;
+}
+.chatBox{
+	max-height: 90vh; 
+	width: 90vw; 
+	overflow: overlay;
+}
+.footer {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding-bottom: 30px;
+	text-align: center;
+}
+@media only screen and (min-width: 600px) {
+	.intro {
+		margin-top: 0;
+	}
+	#bingotable {
+		width: 30vw;
+	}
+	td {
+		height: calc(20/100 * 30vw);
+	}
+	.res-btn{
+		max-width: 50%;
+	}
+	.chatBox{
+		width: 50vw; 
+	}
+}

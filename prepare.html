@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bingo | Prepare</title>
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/paper.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/prepare.js"></script>
+    <script src="js/popover.js"></script>
+</head>
+
+<body onload="room()">
+    <center>
+        <article class="article">
+            <h1 class="article-title" onclick="localStorage.clear(); window.location.replace('index.html')">Bingo</h1>
+            <p class="text-lead">Prepare Your Maize for<br><b id="room_code"></b></p>
+                <button onclick="serialize()">Serialize</button>
+                <button onclick="randomize()">Randomize</button>
+                <button onclick="reset()">Reset</button>
+        </article>
+        <br>
+    </center>
+    <div id="content">
+        <table id="bingotable" class="border-dotted border-thick">
+            <tr>
+                <td data-box="0" class="border-dotted box"></td>
+                <td data-box="1" class="border-dotted box"></td>
+                <td data-box="2" class="border-dotted box"></td>
+                <td data-box="3" class="border-dotted box"></td>
+                <td data-box="4" class="border-dotted box"></td>
+            </tr>
+            <tr>
+                <td data-box="5" class="border-dotted box"></td>
+                <td data-box="6" class="border-dotted box"></td>
+                <td data-box="7" class="border-dotted box"></td>
+                <td data-box="8" class="border-dotted box"></td>
+                <td data-box="9" class="border-dotted box"></td>
+            </tr>
+            <tr>
+                <td data-box="10" class="border-dotted box"></td>
+                <td data-box="11" class="border-dotted box"></td>
+                <td data-box="12" class="border-dotted box"></td>
+                <td data-box="13" class="border-dotted box"></td>
+                <td data-box="14" class="border-dotted box"></td>
+            </tr>
+            <tr>
+                <td data-box="15" class="border-dotted box"></td>
+                <td data-box="16" class="border-dotted box"></td>
+                <td data-box="17" class="border-dotted box"></td>
+                <td data-box="18" class="border-dotted box"></td>
+                <td data-box="19" class="border-dotted box"></td>
+            </tr>
+            <tr>
+                <td data-box="20" class="border-dotted box"></td>
+                <td data-box="21" class="border-dotted box"></td>
+                <td data-box="22" class="border-dotted box"></td>
+                <td data-box="23" class="border-dotted box"></td>
+                <td data-box="24" class="border-dotted box"></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <center>
+        <button id="ready" style="display: none;" onclick="ready()">Ready</button>
+    </center>
+    <label class="paper-btn margin modal" for="modal-1" id="pop" style="display: none;"></label>
+    <input class="modal-state" id="modal-1" type="checkbox">
+    <div class="modal">
+        <label class="modal-bg" for="modal-1"></label>
+        <div class="modal-body">
+            <label class="btn-close" for="modal-1">X</label>
+            <h4 class="modal-title">Modal Title</h4>
+            <h5 class="modal-subtitle">Modal Subtitle</h5>
+            <p class="modal-text">This is an example of modal which is implemented with pure CSS! :D</p>
+            <label for="modal-1" class="border">Okk!</label>
+        </div>
+    </div>
+</body>
+
+</html>
