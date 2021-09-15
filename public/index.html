@@ -1,89 +1,98 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.0.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.0.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-functions.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-storage.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-performance.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bingo</title>
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/paper.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/popover.js"></script>
+</head>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<body>
+    <center class="intro">
+        <article class="article">
+            <h1 class="article-title" onclick="localStorage.clear(); window.location.replace('index.html')">Bingo</h1>
+            <br>
+            <br>
+            <p class="text-lead">How to play?</p>
+            <p>
+            <ul>
+                <li>Create or Join a room by the room Id.</li>
+                <li>Enter Your Name</li>
+                <li>Prepare your board</li>
+                <li>Wait for others</li>
+                <li>Match Starts</li>
+                <li>Have Fun!!</li>
+            </ul>
+            </p>
+            <br><br>
+            <button onclick="startGameDisplay()">Start Game</button>
+            <button onclick="joinGameDisplay()">Join Game</button>
+        </article>
+    </center>
+    <center id="start" class="intro" style="display: none;">
+        <h2 class="article-title" onclick="localStorage.clear(); window.location.replace('index.html')">bingo</h2>
+        <div class="col sm-8">
+            <p class="text-lead">Enter your Name</p>
+            <div class="form-group">
+                <label for="paperInputs1">Enter your name so that your friends can recognise you when you win
+                    the match..</label>
+                <input class="input-block" type="text" id="paperInputs1">
+            </div>
+            <button id="btn_create" onclick="checkNameAndCreate()">Create Room</button>
+        </div>
+    </center>
+    <center id="join" class="intro" style="display: none;">
+        <h2 class="article-title" onclick="localStorage.clear(); window.location.replace('index.html')">bingo</h2>
+        <div id="enter_room">
+            <div class="col sm-8">
+                <p class="text-lead">Enter Room ID</p>
+                <div class="form-group">
+                    <label for="paperInputs2">Enter the room id which your friend shared to you..</label>
+                    <input class="input-block" type="text" id="paperInputs2">
+                </div>
+                <button id="btn_enter" onclick="checkRoomAndEnter()">Enter Room</button>
+            </div>
+        </div>
+        <div id="enter_name" style="display: none;">
+            <div class="col sm-8">
+                <p class="text-lead">Enter Your Name</p>
+                <div class="form-group">
+                    <label for="paperInputs3">Enter your name so that your friends can recognise you when you win
+                        the match..</label>
+                    <input class="input-block" type="text" id="paperInputs3">
+                </div>
+                <button id="btn_join" onclick="checkNameAndJoin()">Join</button>
+            </div>
+        </div>
+    </center>
+    <label class="paper-btn margin modal" for="modal-1" id="pop" style="display: none;"></label>
+    <input class="modal-state" id="modal-1" type="checkbox">
+    <div class="modal">
+        <label class="modal-bg" for="modal-1"></label>
+        <div class="modal-body">
+            <label class="btn-close" for="modal-1">X</label>
+            <h4 class="modal-title">Modal Title</h4>
+            <h5 class="modal-subtitle">Modal Subtitle</h5>
+            <p class="modal-text">This is an example of modal which is implemented with pure CSS! :D</p>
+            <label for="modal-1" class="border">Okk!</label>
+        </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <br>
+    <br>
+    <div class="footer">
+        <p>Made with &#10084; by Anish Roy</p>
+    </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+</body>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
 </html>
