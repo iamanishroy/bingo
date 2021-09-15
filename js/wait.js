@@ -35,7 +35,7 @@ function room() {
   );
   $("#share").attr(
     "href",
-    `whatsapp://send?text=Join our Bingo game by the link https://bingo.oldskool.ml/?room=${room} or By the code *${room}*`
+    `whatsapp://send?text=Join our Bingo game by the link ${document.location.hostname}/?room=${room} or By the code *${room}*`
   );
 }
 function copyToClipboard() {
